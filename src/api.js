@@ -5,6 +5,7 @@ const { query } = require('express');
 require('dotenv').config({path: `${__dirname}./../.env`});
 
 const BASE_URL = process.env.BASE_URL;
+const X_API_KEY = process.env.X_API_KEY;
 console.log(BASE_URL);
 
 router.route('/images/search')
@@ -19,7 +20,7 @@ router.route('/images/search')
 
 router.route('/votes')
 .get((req, res) => {
-    axios.get(`${BASE_URL}/votes`)
+    axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
     .then(data => {
         console.log(data.data);
         res.json(data.data);
