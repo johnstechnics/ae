@@ -17,4 +17,13 @@ router.route('/images/search')
     });
 });
 
+router.route('/votes')
+.get((req, res) => {
+    axios.get(`${BASE_URL}/votes`)
+    .then(data => {
+        console.log(data.data);
+        res.json(data.data);
+    });
+});
+
 module.exports = router;
