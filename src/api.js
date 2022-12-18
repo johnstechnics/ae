@@ -27,4 +27,13 @@ router.route('/votes')
     });
 });
 
+router.route('/favourites')
+.get((req, res) => {
+    axios.get(`${BASE_URL}/favourites`, { headers: { 'x-api-key': X_API_KEY } })
+    .then(data => {
+        console.log(data.data);
+        res.json(data.data);
+    });
+});
+
 module.exports = router;
