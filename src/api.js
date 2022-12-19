@@ -30,8 +30,8 @@ router.route('/votes')
     console.log(req.body);
     console.log(req.headers);
     axios.post(`${BASE_URL}/votes`, {
-        'image_id': req.body.id,
-        'value': req.body.voteValue
+        'image_id': req.body.image_id,
+        'value': req.body.value
     },
     {
         headers: { 
