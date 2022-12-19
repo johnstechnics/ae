@@ -30,12 +30,11 @@ const mapRequestParams = (params) => {
 
 router.route('/images/search')
 .get((req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
     const params = mapRequestParams(req.query);
-
     axios.get(`${BASE_URL}/images/search${params}`)
     .then(data => {
-        console.log(data.data);
+        // console.log(data.data);
         res.json(data.data);
     });
 });
@@ -60,6 +59,18 @@ router.route('/votes')
             'content-type': 'application/json',
             'x-api-key': X_API_KEY 
         }
+    })
+    .then(data => {
+        // console.log(data.data);
+        res.json(data.data);
+    });
+});
+
+router.route('/votes/:id')
+.delete((req, res) => {
+    console.log(req.params);
+    axios.delete(`${BASE_URL}/votes/${req.params.id}`, {
+        headers: { 'x-api-key': X_API_KEY }
     })
     .then(data => {
         // console.log(data.data);
