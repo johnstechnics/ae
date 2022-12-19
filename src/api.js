@@ -27,8 +27,8 @@ router.route('/votes')
     });
 })
 .post((req, res) => {
-    console.log(req.body);
-    console.log(req.headers);
+    // console.log(req.body);
+    // console.log(req.headers);
     axios.post(`${BASE_URL}/votes`, {
         'image_id': req.body.image_id,
         'value': req.body.value
@@ -40,7 +40,7 @@ router.route('/votes')
         }
     })
     .then(data => {
-        console.log(data.data);
+        // console.log(data.data);
         res.json(data.data);
     });
 });
@@ -50,6 +50,24 @@ router.route('/favourites')
     axios.get(`${BASE_URL}/favourites`, { headers: { 'x-api-key': X_API_KEY } })
     .then(data => {
         // console.log(data.data);
+        res.json(data.data);
+    });
+})
+.post((req, res) => {
+    console.log(req.body);
+    console.log(req.headers);
+    axios.post(`${BASE_URL}/favourites`, {
+        'image_id': req.body.image_id,
+        "sub_id": req.body.sub_id
+    },
+    {
+        headers: { 
+            'content-type': 'application/json',
+            'x-api-key': X_API_KEY 
+        }
+    })
+    .then(data => {
+        console.log(data.data);
         res.json(data.data);
     });
 });
