@@ -20,7 +20,7 @@ router.route('/images/search')
 
 router.route('/votes')
 .get((req, res) => {
-    axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
+    axios.get(`${BASE_URL}/votes`, { 'x-api-key': X_API_KEY })
     .then(data => {
         console.log(data.data);
         res.json(data.data);
@@ -29,7 +29,7 @@ router.route('/votes')
 
 router.route('/favourites')
 .get((req, res) => {
-    axios.get(`${BASE_URL}/favourites`, { headers: { 'x-api-key': X_API_KEY } })
+    axios.get(`${BASE_URL}/favourites`, { 'x-api-key': X_API_KEY })
     .then(data => {
         console.log(data.data);
         res.json(data.data);
@@ -38,7 +38,7 @@ router.route('/favourites')
 
 router.route('/breeds')
 .get((req, res) => {
-    axios.get(`${BASE_URL}/breeds`, { headers: { 'x-api-key': X_API_KEY } })
+    axios.get(`${BASE_URL}/breeds`, { 'x-api-key': X_API_KEY })
     .then(data => {
         console.log(data.data);
         res.json(data.data);
