@@ -6,14 +6,26 @@ require('dotenv').config({path: `${__dirname}./../.env`});
 
 const BASE_URL = process.env.BASE_URL;
 const X_API_KEY = process.env.X_API_KEY;
-// console.log(BASE_URL);
 
 router.route('/images/search')
 .get((req, res) => {
-    // console.log(req.query.size);
-    axios.get(`${BASE_URL}/images/search${req.query.size ? `?size=${req.query.size}` : ''}`)
+    console.log(req.query);
+    let requestParams = [];
+    for (const queryName in req.query) {
+        requestParams.push({
+            name: queryName,
+            value: req.query[queryName]
+        });
+    };
+    console.log(requestParams);
+    requestParams = requestParams.map(i => `${i.name}=${i.value}&`);
+    console.log(requestParams);
+    let paramsStr = `?${requestParams.join('')}`.slice(0, -1);
+    console.log(paramsStr);
+
+    axios.get(`${BASE_URL}/images/search${req.query ? paramsStr : ''}`)
     .then(data => {
-        // console.log(data.data);
+        console.log(data.data);
         res.json(data.data);
     });
 });
