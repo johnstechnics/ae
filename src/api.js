@@ -115,6 +115,15 @@ router.route('/favourites')
     });
 });
 
+router.route('/favourites/:id')
+.delete((req, res) => {
+    axios.delete(`${BASE_URL}/favourites/${req.params.id}`, { headers: { 'x-api-key': X_API_KEY } })
+    .then(data => {
+        // console.log(data.data);
+        res.json(data.data);
+    });
+});
+
 router.route('/breeds')
 .get((req, res) => {
     axios.get(`${BASE_URL}/breeds`, { headers: { 'x-api-key': X_API_KEY } })
