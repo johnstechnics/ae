@@ -6,7 +6,7 @@ require('dotenv').config({path: `${__dirname}./../../../.env`});
 const BASE_URL = process.env.BASE_URL;
 const X_API_KEY = process.env.X_API_KEY;
 
-router.route('/?:id')
+router.route('/')
 .get((req, res) => {
     axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
     .then(data => { res.json(data.data) });
@@ -23,7 +23,9 @@ router.route('/?:id')
         }
     })
     .then(data => { res.json(data.data) });
-})
+});
+
+router.route('/:id')
 .delete((req, res) => {
     axios.delete(`${BASE_URL}/votes/${req.params.id}`, { headers: { 'x-api-key': X_API_KEY } })
     .then(data => { res.json(data.data) });
