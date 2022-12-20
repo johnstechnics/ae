@@ -49,6 +49,16 @@ router.route('/images/:id')
     });
 });
 
+router.route('/images/upload')
+.post((req, res) => {
+    // console.log(req.query);
+    axios.post(`${BASE_URL}/images/upload`, req.body, { headers: { 'x-api-key': X_API_KEY } })
+    .then(data => {
+        // console.log(data.data);
+        res.json(data.data);
+    });
+});
+
 router.route('/votes')
 .get((req, res) => {
     axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
