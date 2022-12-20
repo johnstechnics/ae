@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { default: axios } = require('axios');
-const { query } = require('express');
 require('dotenv').config({path: `${__dirname}./../../../.env`});
 
 const BASE_URL = process.env.BASE_URL;

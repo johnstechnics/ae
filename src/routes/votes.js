@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { default: axios } = require('axios');
-const { query } = require('express');
 require('dotenv').config({path: `${__dirname}./../../../.env`});
 
 const BASE_URL = process.env.BASE_URL;
 const X_API_KEY = process.env.X_API_KEY;
 
-router.route('/')
+router.route('/?:id')
 .get((req, res) => {
     axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
-    .then(data => {
-        res.json(data.data);
-    });
+    .then(data => { res.json(data.data) });
 })
 .post((req, res) => {
     axios.post(`${BASE_URL}/votes`, {
@@ -25,19 +22,11 @@ router.route('/')
             'x-api-key': X_API_KEY 
         }
     })
-    .then(data => {
-        res.json(data.data);
-    });
-});
-
-router.route('/:id')
+    .then(data => { res.json(data.data) });
+})
 .delete((req, res) => {
-    axios.delete(`${BASE_URL}/votes/${req.params.id}`, {
-        headers: { 'x-api-key': X_API_KEY }
-    })
-    .then(data => {
-        res.json(data.data);
-    });
+    axios.delete(`${BASE_URL}/votes/${req.params.id}`, { headers: { 'x-api-key': X_API_KEY } })
+    .then(data => { res.json(data.data) });
 });
 
 module.exports = router;
