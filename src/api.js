@@ -52,7 +52,7 @@ router.route('/images/:id')
 router.route('/images/upload')
 .post((req, res) => {
     console.log('req.files.file:', req.files.file);
-    axios.post(`${BASE_URL}/images/upload`, req.files.file, { headers: {
+    axios.post(`${BASE_URL}/images/upload`, req.files.file.data, { headers: {
         'x-api-key': X_API_KEY
     }})
     .then(data => {
