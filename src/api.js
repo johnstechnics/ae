@@ -39,6 +39,16 @@ router.route('/images/search')
     });
 });
 
+router.route('/images/:id')
+.get((req, res) => {
+    // console.log(req.query);
+    axios.get(`${BASE_URL}/images/${req.params.id}`, { headers: { 'x-api-key': X_API_KEY } })
+    .then(data => {
+        // console.log(data.data);
+        res.json(data.data);
+    });
+});
+
 router.route('/votes')
 .get((req, res) => {
     axios.get(`${BASE_URL}/votes`, { headers: { 'x-api-key': X_API_KEY } })
