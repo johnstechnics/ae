@@ -8,7 +8,7 @@ const BASE_URL = process.env.BASE_URL;
 const X_API_KEY = process.env.X_API_KEY;
 
 const mapRequestParams = (params) => {
-    console.log(params);
+    // console.log(params);
     if(params) {
         let requestParams = [];
         for (const queryName in params) {
@@ -17,11 +17,11 @@ const mapRequestParams = (params) => {
                 value: params[queryName]
             });
         };
-        console.log(requestParams);
+        // console.log(requestParams);
         requestParams = requestParams.map(i => `${i.name}=${i.value}&`);
-        console.log(requestParams);
+        // console.log(requestParams);
         let paramsStr = `?${requestParams.join('')}`.slice(0, -1);
-        console.log(paramsStr);
+        // console.log(paramsStr);
         return paramsStr;
     } else {
         return '';
@@ -51,7 +51,9 @@ router.route('/images/:id')
 
 router.route('/images/upload')
 .post((req, res) => {
-    // console.log(req.query);
+    console.log('req', req);
+    console.log('req.body', req.body);
+    console.log('req.files', req.files);
     axios.post(`${BASE_URL}/images/upload`, req.files, { headers: { 'x-api-key': X_API_KEY } })
     .then(data => {
         // console.log(data.data);
@@ -88,7 +90,7 @@ router.route('/votes')
 
 router.route('/votes/:id')
 .delete((req, res) => {
-    console.log(req.params);
+    // console.log(req.params);
     axios.delete(`${BASE_URL}/votes/${req.params.id}`, {
         headers: { 'x-api-key': X_API_KEY }
     })
@@ -107,8 +109,8 @@ router.route('/favourites')
     });
 })
 .post((req, res) => {
-    console.log(req.body);
-    console.log(req.headers);
+    // console.log(req.body);
+    // console.log(req.headers);
     axios.post(`${BASE_URL}/favourites`, {
         'image_id': req.body.image_id,
         "sub_id": req.body.sub_id
@@ -120,7 +122,7 @@ router.route('/favourites')
         }
     })
     .then(data => {
-        console.log(data.data);
+        // console.log(data.data);
         res.json(data.data);
     });
 });
