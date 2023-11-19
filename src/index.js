@@ -3,10 +3,10 @@ import cors from 'cors';
 
 require('dotenv').config({path: `${__dirname}./../.env`});
 
-import breeds from './routes/breeds';
-import votes from './routes/votes';
-import favourites from './routes/favourites';
-import images from './routes/images';
+import breeds from './routes/breeds.js';
+import votes from './routes/votes.js';
+import favourites from './routes/favourites.js';
+import images from './routes/image.js';
 
 const app = express();
 const PORT = process.env.PORT;
