@@ -1,17 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-// const fileUpload = require('express-fileupload');
-const app = express();
-const breeds = require('./routes/breeds');
-const votes = require('./routes/votes');
-const favourites = require('./routes/favourites');
-const images = require('./routes/images');
+import express from 'express';
+import cors from 'cors';
+
 require('dotenv').config({path: `${__dirname}./../.env`});
+
+import breeds from './routes/breeds';
+import votes from './routes/votes';
+import favourites from './routes/favourites';
+import images from './routes/images';
+
+const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors());
-// app.use(fileUpload());
-// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/api/breeds', breeds);
 app.use('/api/votes', votes);

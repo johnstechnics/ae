@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import axios from 'axios';
+
 const router = express.Router();
-const { default: axios } = require('axios');
-const { query } = require('express');
+
 require('dotenv').config({path: `${__dirname}./../../../.env`});
 
 const BASE_URL = process.env.BASE_URL;
@@ -41,4 +42,4 @@ router.route('/:id')
     });
 });
 
-module.exports = router;
+export default router;
