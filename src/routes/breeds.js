@@ -1,7 +1,7 @@
-import express from 'express';
+import { Router } from 'express';
 import axios from 'axios';
 
-const router = express.Router();
+const router = new Router();
 
 require('dotenv').config({path: `${__dirname}./../../../.env`});
 
